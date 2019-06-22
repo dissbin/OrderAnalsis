@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Echarts柱状图</title>
+		
+		<script type="text/javascript" src="Https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js"></script>
+	</head>
+	<body>
+				<div id="main" style="height: 400px;width: 600px;"></div>
+				<script type="text/javascript">
+					
+					var myChart = echarts.init(document.getElementById('main'));
+					var option={
+						title:{
+							// show:true,
+							text:'Echarts柱状图',
+							// subtext:'柱状图事例',
+							// left:'right',
+							// borderColor:'red',
+							// borderWidth:5
+						},
+						tooltip:{
+							trigger:'axis'
+						},
+						toobox:{
+							show:true,
+							feature:{
+								dataView:{
+									show:true
+								},
+								restore:{
+									show:true
+								},
+								dataZoom:{
+									show:true
+								},
+								saveAsImage:{
+									show:true
+								},
+								magicType:{
+									type:['line','bar']
+								}
+							}
+						},
+						legend:{
+							data:['销量']
+						},	
+						xAxis:{
+							data:['衬衫','羊毛衫','雪纺衫','裤子','高更鞋','袜子']
+						},
+						yAxis:{},
+						series:[{
+								name:'销量',
+								type:'bar',
+								data:[5,20,36,10,10,20],
+								markPoint:{
+									data:[{
+											type:'max',
+											name:'最大值'
+										},{
+											type:'min',
+											name:'最小值'
+										}
+									]
+								},
+								markLine:{
+									data:[{
+										type:'average',name:'平均值'
+									}]
+								}
+							},
+							{
+								name:'销量',
+								type:'line',
+								data:[7,30,50,10,40,60]
+							}
+						]
+					};
+					var optionRadius = {
+						title:{
+							text:'末站点访问来源',
+							subtext:'纯属虚构',
+							x:'center'
+						},
+						tooltip:{
+							trigger:'item',
+							formatter:"{a} <br />{b}:{c}({d}%)"
+						},
+						legend:{
+							orient:'vertical',
+							left:'left',
+							data:['直接访问','邮件营销']
+						},
+						series:[{
+							name:'访问来源',
+							type:'pie',
+							radius:'55%',
+							center:['50%','60%'],
+							data:[{
+									value:335,
+									name:'直接访问'
+								},
+								{
+									value:200,
+									name:'邮件营销'
+								}
+							],
+							itemStyle:{
+								emphasis:{
+									shadowBlur:10,
+									shadowOffsetX:0,
+									shadowColor:'rgba(0,0,0,0.5)'
+								}
+							}
+						
+						}]
+					};
+					var	optionOrder = {
+						    legend: {},
+						    tooltip: {},
+						    dataset: {
+						        // 提供一份数据。
+						        source: [
+						            ['product', '完成订单数', '取消订单数', '下单数','下单用户数'],
+						            ['天津', 11476,	1527,	13068,	10783],
+						            ['太原', 5748,	376,	6124,	4645],
+						            ['北京', 3423,	321	,3745,	2882],
+						            ['秦皇岛', 	1730,	137	,1867,	1477]
+						        ]
+						    },
+						    // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
+						    xAxis: {type: 'category'},
+						    // 声明一个 Y 轴，数值轴。
+						    yAxis: {},
+						    // 声明多个 bar 系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
+						    series: [
+						        {type: 'bar'},
+						        {type: 'bar'},
+						        {type: 'bar'},
+						        {type: 'bar'}
+						    ]
+					};
+					
+					//饼图
+					optionCircul = {
+							    title : {
+							        text: '某站点用户访问来源',
+							        subtext: '纯属虚构',
+							        x:'center'
+							    },
+							    tooltip : {
+							        trigger: 'item',
+							        formatter: "{a} <br/>{b} : {c} ({d}%)"
+							    },
+							    legend: {
+							        orient: 'vertical',
+							        left: 'left',
+							        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+							    },
+							    series : [
+							        {
+							            name: '访问来源',
+							            type: 'pie',
+							            radius : '55%',
+							            center: ['50%', '60%'],
+							            data:[
+							                {value:335, name:'直接访问'},
+							                {value:310, name:'邮件营销'},
+							                {value:234, name:'联盟广告'},
+							                {value:135, name:'视频广告'},
+							                {value:1548, name:'搜索引擎'}
+							            ],
+							            itemStyle: {
+							                emphasis: {
+							                    shadowBlur: 10,
+							                    shadowOffsetX: 0,
+							                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+							                }
+							            }
+							        }
+							    ]
+					};
+
+					myChart.setOption(optionCircul);
+
+				</script>
+	</body>
+
+</html>

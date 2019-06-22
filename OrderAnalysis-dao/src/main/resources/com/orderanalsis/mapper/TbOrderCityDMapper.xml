@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.orderanalsis.mapper.TbOrderCityDMapper" >
+  <resultMap id="BaseResultMap" type="com.orderanalsis.pojo.TbOrderCityD" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="cnt_ord_succ_d" property="cntOrdSuccD" jdbcType="INTEGER" />
+    <result column="cnt_ord_cacel_d" property="cntOrdCacelD" jdbcType="INTEGER" />
+    <result column="cnt_ord_d" property="cntOrdD" jdbcType="INTEGER" />
+    <result column="cnt_ord_user" property="cntOrdUser" jdbcType="INTEGER" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, city_id, cnt_ord_succ_d, cnt_ord_cacel_d, cnt_ord_d, cnt_ord_user
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.orderanalsis.pojo.TbOrderCityDExample" >
+    SELECT name as city_name,cnt_ord_succ_d from city join Tb_order_city_d on (Tb_order_city_d.city_id=city.id)
+	order by cnt_ord_succ_d DESC;
+    
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from Tb_order_city_d
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Tb_order_city_d
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.orderanalsis.pojo.TbOrderCityDExample" >
+    delete from Tb_order_city_d
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.orderanalsis.pojo.TbOrderCityD" >
+    insert into Tb_order_city_d (id, city_id, cnt_ord_succ_d, 
+      cnt_ord_cacel_d, cnt_ord_d, cnt_ord_user
+      )
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{cntOrdSuccD,jdbcType=INTEGER}, 
+      #{cntOrdCacelD,jdbcType=INTEGER}, #{cntOrdD,jdbcType=INTEGER}, #{cntOrdUser,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.orderanalsis.pojo.TbOrderCityD" >
+    insert into Tb_order_city_d
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cntOrdSuccD != null" >
+        cnt_ord_succ_d,
+      </if>
+      <if test="cntOrdCacelD != null" >
+        cnt_ord_cacel_d,
+      </if>
+      <if test="cntOrdD != null" >
+        cnt_ord_d,
+      </if>
+      <if test="cntOrdUser != null" >
+        cnt_ord_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdSuccD != null" >
+        #{cntOrdSuccD,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdCacelD != null" >
+        #{cntOrdCacelD,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdD != null" >
+        #{cntOrdD,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdUser != null" >
+        #{cntOrdUser,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.orderanalsis.pojo.TbOrderCityDExample" resultType="java.lang.Integer" >
+    select count(*) from Tb_order_city_d
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update Tb_order_city_d
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cntOrdSuccD != null" >
+        cnt_ord_succ_d = #{record.cntOrdSuccD,jdbcType=INTEGER},
+      </if>
+      <if test="record.cntOrdCacelD != null" >
+        cnt_ord_cacel_d = #{record.cntOrdCacelD,jdbcType=INTEGER},
+      </if>
+      <if test="record.cntOrdD != null" >
+        cnt_ord_d = #{record.cntOrdD,jdbcType=INTEGER},
+      </if>
+      <if test="record.cntOrdUser != null" >
+        cnt_ord_user = #{record.cntOrdUser,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update Tb_order_city_d
+    set id = #{record.id,jdbcType=INTEGER},
+      city_id = #{record.cityId,jdbcType=INTEGER},
+      cnt_ord_succ_d = #{record.cntOrdSuccD,jdbcType=INTEGER},
+      cnt_ord_cacel_d = #{record.cntOrdCacelD,jdbcType=INTEGER},
+      cnt_ord_d = #{record.cntOrdD,jdbcType=INTEGER},
+      cnt_ord_user = #{record.cntOrdUser,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.orderanalsis.pojo.TbOrderCityD" >
+    update Tb_order_city_d
+    <set >
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdSuccD != null" >
+        cnt_ord_succ_d = #{cntOrdSuccD,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdCacelD != null" >
+        cnt_ord_cacel_d = #{cntOrdCacelD,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdD != null" >
+        cnt_ord_d = #{cntOrdD,jdbcType=INTEGER},
+      </if>
+      <if test="cntOrdUser != null" >
+        cnt_ord_user = #{cntOrdUser,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.orderanalsis.pojo.TbOrderCityD" >
+    update Tb_order_city_d
+    set city_id = #{cityId,jdbcType=INTEGER},
+      cnt_ord_succ_d = #{cntOrdSuccD,jdbcType=INTEGER},
+      cnt_ord_cacel_d = #{cntOrdCacelD,jdbcType=INTEGER},
+      cnt_ord_d = #{cntOrdD,jdbcType=INTEGER},
+      cnt_ord_user = #{cntOrdUser,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
