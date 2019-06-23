@@ -72,17 +72,14 @@ app.controller('categoryAmtController' ,function($scope,$controller,categoryAmtS
 	
 	
 	//搜索
-	onclick1Times = 0;
+	
 	$scope.search=function(page,rows){			
 		categoryAmtService.search(page,rows,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.rows;	
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
 				$scope.indexDataViewStatus = 1;
-				if(onclick1Times == 0){
-					onclick1();
-					onclick1Times = onclick1Times + 1;
-				}
+				onclick1();
 			}			
 		);
 	}
