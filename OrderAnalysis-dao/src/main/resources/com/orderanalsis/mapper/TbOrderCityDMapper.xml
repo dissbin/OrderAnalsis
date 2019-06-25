@@ -72,8 +72,7 @@
     id, city_id, cnt_ord_succ_d, cnt_ord_cacel_d, cnt_ord_d, cnt_ord_user
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.orderanalsis.pojo.TbOrderCityDExample" >
-    SELECT name as city_name,cnt_ord_succ_d from city join Tb_order_city_d on (Tb_order_city_d.city_id=city.id)
-	order by cnt_ord_succ_d DESC;
+    
     
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
