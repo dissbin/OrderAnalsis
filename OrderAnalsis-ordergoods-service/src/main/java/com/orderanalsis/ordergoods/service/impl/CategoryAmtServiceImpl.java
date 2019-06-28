@@ -94,7 +94,7 @@ public class CategoryAmtServiceImpl implements CategoryAmtService {
 				}
 		}
 		example.setOrderByClause("'goods_sell_amt' DESC");
-		Page<TbCategoryAmt> page= (Page<TbCategoryAmt>)categoryAmtMapper.selectByExample(example);		
+		
 		return new PageResult(page.getTotal(), page.getResult());
 	}
 	
